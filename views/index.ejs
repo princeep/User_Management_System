@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>User Management System</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+ 
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+ 
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+ 
+<body>
+    <h2>User Management System</h2>
+    <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Post</th>
+          <th>Salary</th>
+          <th>Delete</th>
+        </tr>
+        <% data.forEach(element => { %>
+        <tr>
+          <td><%= element.userId %></td>
+          <td><%= element.userName %></td>
+          <td><%= element.userPost %></td>
+          <td><%= element.userSalary %></td>
+
+          <td>
+                <form action="/delete" method="post">
+                  <input type="text" style="display: none;"
+                     name="userId"
+                     value="<%= element.userId %>">
+                  <button type="submit">Delete</button>
+                </form>
+          </td>
+        </tr>
+        <% }) %>
+  </table>
+ 
+    <h2>Add user</h2>
+ 
+    <form action="/" method="post">
+        <input type="text" placeholder="User Name"
+            name="userName">
+        <input type="text" placeholder="User Post"
+            name="userPost">
+         <input type="text" placeholder="User salary" name="userSalary">    
+    
+        <button type="submit">Submit</button>
+    </form>
+ 
+    <h2>Update user</h2>
+ 
+    <form action="/update" method="post">
+        <input type="text" placeholder="UserId"
+            name="userId">
+        <input type="text" placeholder="User Post"
+            name="userPost">
+        <input type="text" placeholder="User salary" name="userSalary">    
+        <button type="submit">Update</button>
+    </form>
+</body>
+ 
+</html>
